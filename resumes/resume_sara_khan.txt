@@ -1,0 +1,14 @@
+Sara Khan
+Email: sara.khan@email.com
+Phone: 555-4567
+
+Summary:
+Data analyst with strong Python and SQL background, 3 years experience.
+
+Skills:
+Python, Pandas, SQL, Tableau, Excel, Machine Learning basics
+
+Experience:
+Data Analyst, InsightAnalytics (2022-2025)
+- Automated reporting pipelines using Python
+- Built dashboards in Tableau for stakeholders

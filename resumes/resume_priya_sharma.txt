@@ -1,0 +1,15 @@
+Priya Sharma
+Email: priya.sharma@email.com
+Phone: 555-2345
+
+Summary:
+Full-stack developer with 4 years of experience specializing in Java and Spring Boot.
+
+Skills:
+Java, Spring Boot, MySQL, REST APIs, AWS, Jenkins
+
+Experience:
+Senior Software Engineer, DataSystems Inc (2021-2025)
+- Designed microservices using Java and Spring Boot
+- Deployed applications on AWS
+- Set up CI/CD pipelines with Jenkins

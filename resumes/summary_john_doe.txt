@@ -1,0 +1,29 @@
+RESUME SUMMARY - JOHN DOE
+================================
+
+CONTACT INFORMATION:
+- Email: john.doe@email.com
+- Phone: 555-1234
+
+PROFESSIONAL PROFILE:
+Backend developer with 3 years of experience specializing in Python and REST APIs.
+
+CORE COMPETENCIES:
+- Programming Languages: Python
+- Frameworks: Django
+- Databases: PostgreSQL
+- Tools & Technologies: Docker, Git
+
+WORK EXPERIENCE:
+Position: Software Engineer
+Company: TechCorp
+Duration: 2022-2025 (3 years)
+Key Responsibilities:
+  • Built REST APIs using Python and Django
+  • Worked with PostgreSQL databases
+
+SUMMARY:
+John Doe is an experienced backend developer with strong expertise in Python-based web development. His technical stack includes Django framework, PostgreSQL database management, and modern DevOps tools like Docker. With 3 years of professional experience at TechCorp, he has demonstrated proficiency in building REST APIs and working with relational databases.
+
+================================
+Summary generated from: resume_john_doe.txt

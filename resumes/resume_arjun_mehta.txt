@@ -1,0 +1,14 @@
+Arjun Mehta
+Email: arjun.mehta@email.com
+Phone: 555-3456
+
+Summary:
+Frontend engineer with 2 years of experience in JavaScript frameworks.
+
+Skills:
+JavaScript, React, TypeScript, HTML, CSS, Redux
+
+Experience:
+Frontend Developer, WebWorks Ltd (2023-2025)
+- Built responsive UIs using React and TypeScript
+- Improved page load times by 30%

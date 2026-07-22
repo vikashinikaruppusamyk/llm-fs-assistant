@@ -1,0 +1,14 @@
+Michael Lee
+Email: michael.lee@email.com
+Phone: 555-5678
+
+Summary:
+DevOps engineer with 5 years experience in cloud infrastructure.
+
+Skills:
+Python, Docker, Kubernetes, Terraform, AWS, Linux
+
+Experience:
+DevOps Engineer, CloudNet Solutions (2020-2025)
+- Managed Kubernetes clusters for production workloads
+- Automated infrastructure provisioning with Terraform and Python scripts
