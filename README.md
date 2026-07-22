@@ -16,13 +16,11 @@ This project has two parts:
 
 1\. \*\*Core File System Tools\*\* (`fs\_tools.py`) — a set of Python functions that read, list, write, and search files on disk. These support `.txt`, `.pdf`, and `.docx` formats.
 
-
-
-2\. \*\*LLM Integration\*\* (`llm\_file\_assistant.py`) — connects those tools to Claude via the Anthropic API. Instead of hardcoding logic, the LLM decides \*which\* tool to call and \*when\*, based on a natural language query. The Python code executes the actual file operations and feeds the results back to Claude, which then produces a final human-readable answer.
+2\. \*\*LLM Integration\*\* (`llm\_file\_assistant.py`) — connects those tools to Claude via the Anthropic API. Instead of hardcoding logic, the LLM decides which tool to call and when, based on a natural language query. The Python code executes the actual file operations and feeds the results back to Claude, which then produces a final human-readable answer.
 
 
 
-This demonstrates the \*\*tool calling / function calling\*\* pattern: the LLM has no direct access to the file system — it can only request that a specific tool be run with specific arguments. The application code is responsible for actually executing those requests safely and returning the results.
+This demonstrates the tool calling / function calling pattern: the LLM has no direct access to the file system — it can only request that a specific tool be run with specific arguments. The application code is responsible for actually executing those requests safely and returning the results.
 
 
 
@@ -34,29 +32,29 @@ This demonstrates the \*\*tool calling / function calling\*\* pattern: the LLM h
 
 llm-fs-assistant/
 
-├── fs\_tools.py              # Core file system tools (Part A)
+├── fs\_tools.py              Core file system tools (Part A)
 
-├── llm\_file\_assistant.py    # LLM integration + tool-calling loop (Part B)
+├── llm\_file\_assistant.py    LLM integration + tool-calling loop (Part B)
 
-├── test\_fs\_tools.py         # Manual tests for fs\_tools.py functions
+├── test\_fs\_tools.py         Manual tests for fs\_tools.py functions
 
-├── make\_test\_pdf.py         # Helper script to generate a sample PDF resume
+├── make\_test\_pdf.py         Helper script to generate a sample PDF resume
 
-├── make\_test\_docx.py        # Helper script to generate a sample DOCX resume
+├── make\_test\_docx.py        Helper script to generate a sample DOCX resume
 
-├── requirements.txt         # Python dependencies
+├── requirements.txt         Python dependencies
 
-├── .env                     # API key (not committed / not shared)
+├── .env                     API key (not committed)
 
-├── resumes/                 # Sample resume files (.txt, .pdf, .docx)
+├── resumes/                 Sample resume files (.txt, .pdf, .docx)
 
-└── output/                  # Generated output files (e.g. summaries)
+└── output/                  Generated output files (e.g. summaries)
 
 ```
 
 
 
-\## Tools Implemented (`fs\_tools.py`)
+\## Tools Implemented (fs\_tools.py)
 
 
 
@@ -64,9 +62,9 @@ llm-fs-assistant/
 
 |---|---|
 
-| `read\_file(filepath)` | Reads a resume file and extracts its text content. Supports `.txt`, `.pdf`, `.docx`. Returns a dict with `success`, `content`, `error`, and `metadata`. |
+| `read\_file(filepath)` | Reads a resume file and extracts its text content. Supports `.txt`, `.pdf`, `.docx`. Returns a dict with success, content, error, and metadata. |
 
-| `list\_files(directory, extension=None)` | Lists files in a directory, optionally filtered by extension. Returns file name, path, size, and last modified date. |
+| `list\_files(directory, extension)` | Lists files in a directory, optionally filtered by extension. Returns file name, path, size, and last modified date. |
 
 | `write\_file(filepath, content)` | Writes text content to a file, automatically creating parent directories if they don't exist. |
 
@@ -82,11 +80,11 @@ Each function returns a consistent, structured dictionary (success/error/data) s
 
 
 
-\### 1. Clone / download the project and navigate into it
+\### 1. Clone or download the project and navigate into it
 
 
 
-```bash
+```
 
 cd llm-fs-assistant
 
@@ -98,9 +96,9 @@ cd llm-fs-assistant
 
 
 
-\*\*Windows (PowerShell):\*\*
+Windows (PowerShell):
 
-```powershell
+```
 
 python -m venv venv
 
@@ -112,7 +110,7 @@ venv\\Scripts\\activate
 
 If PowerShell blocks the activation script, run this once:
 
-```powershell
+```
 
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
@@ -120,9 +118,9 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 
 
-\*\*Mac/Linux:\*\*
+Mac/Linux:
 
-```bash
+```
 
 python3 -m venv venv
 
@@ -136,7 +134,7 @@ source venv/bin/activate
 
 
 
-```bash
+```
 
 pip install -r requirements.txt
 
@@ -160,7 +158,7 @@ ANTHROPIC\_API\_KEY=your-api-key-here
 
 
 
-You can get an API key from \[console.anthropic.com](https://console.anthropic.com/). Note that using the API requires adding billing credits to your Anthropic account (a few dollars is more than enough for this project).
+Get an API key from console.anthropic.com. Note that using the API requires adding billing credits to your Anthropic account (a few dollars is more than enough for this project).
 
 
 
@@ -168,7 +166,7 @@ You can get an API key from \[console.anthropic.com](https://console.anthropic.c
 
 
 
-```bash
+```
 
 python llm\_file\_assistant.py
 
@@ -184,7 +182,7 @@ If everything is configured correctly, this will run a sample query and print Cl
 
 
 
-The core function is `run\_conversation(user\_message)` in `llm\_file\_assistant.py`. It takes a natural language query, lets Claude decide which tools to call (looping until Claude has enough information), and returns a final answer.
+The core function is `run\_conversation(user\_message)` in `llm\_file\_assistant.py`. It takes a natural language query, lets Claude decide which tools to call, and returns a final answer.
 
 
 
@@ -218,7 +216,7 @@ run\_conversation("Create a summary file for resume\_john\_doe.pdf")
 
 
 
-Each query may trigger multiple tool calls in sequence — for example, "Find resumes mentioning Python" first calls `list\_files` to discover what's in the folder, then calls `search\_in\_file` on each file found. The terminal output shows each tool call as it happens, e.g.:
+Each query may trigger multiple tool calls in sequence. For example, "Find resumes mentioning Python" first calls `list\_files` to discover what's in the folder, then calls `search\_in\_file` on each file found. The terminal output shows each tool call as it happens:
 
 
 
@@ -238,11 +236,11 @@ Each query may trigger multiple tool calls in sequence — for example, "Find re
 
 1\. The user's query and the tool schemas (name, description, expected arguments) are sent to Claude.
 
-2\. If Claude decides a tool is needed, it responds with a `tool\_use` request instead of plain text.
+2\. If Claude decides a tool is needed, it responds with a tool\_use request instead of plain text.
 
-3\. The Python code looks up the matching function in `available\_functions`, runs it with the arguments Claude provided, and packages the result.
+3\. The Python code looks up the matching function, runs it with the arguments Claude provided, and packages the result.
 
-4\. The result is sent back to Claude as a `tool\_result`.
+4\. The result is sent back to Claude as a tool\_result.
 
 5\. Claude either requests another tool call (the loop repeats) or responds with a final natural-language answer once it has enough information.
 
@@ -252,23 +250,23 @@ Each query may trigger multiple tool calls in sequence — for example, "Find re
 
 
 
-The `resumes/` folder contains 7 dummy resumes across three formats, covering a mix of skill sets (Python, Java, JavaScript, DevOps, data analysis) so that search and read behavior can be tested meaningfully:
+The `resumes/` folder contains 7 dummy resumes across three formats, covering a mix of skill sets (Python, Java, JavaScript, DevOps, data analysis):
 
 
 
-\- `resume\_john\_doe.txt`
+\- resume\_john\_doe.txt
 
-\- `resume\_priya\_sharma.txt`
+\- resume\_priya\_sharma.txt
 
-\- `resume\_arjun\_mehta.txt`
+\- resume\_arjun\_mehta.txt
 
-\- `resume\_sara\_khan.txt`
+\- resume\_sara\_khan.txt
 
-\- `resume\_michael\_lee.txt`
+\- resume\_michael\_lee.txt
 
-\- `resume\_neha\_kapoor.pdf`
+\- resume\_neha\_kapoor.pdf
 
-\- `resume\_ravi\_iyer.docx`
+\- resume\_ravi\_iyer.docx
 
 
 
@@ -276,7 +274,7 @@ The `resumes/` folder contains 7 dummy resumes across three formats, covering a 
 
 
 
-\- The project uses Anthropic's Claude (`claude-sonnet-4-5`) rather than OpenAI, due to API billing/access constraints during development. The tool-calling pattern is conceptually identical across providers.
+\- The project uses Anthropic's Claude (claude-sonnet-4-5) rather than OpenAI, due to API billing/access constraints during development. The tool-calling pattern is conceptually identical across providers.
 
 \- Error handling is built into every tool function — missing files, unsupported formats, and other failures return a structured error rather than raising an exception that would crash the assistant.
 
