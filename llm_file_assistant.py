@@ -144,19 +144,11 @@ def run_conversation(user_message: str) -> str:
         # asks for more tools or gives a final answer
 
 if __name__ == "__main__":
-    print("=== Query 1 ===")
-    answer1 = run_conversation("Read all resumes in the resumes folder")
-    print("\nFinal answer:")
-    print(answer1)
+    print("=== QUERY 1: Read all resumes in the resumes folder ===\n")
+    print(run_conversation("Read all resumes in the resumes folder"))
 
-if __name__ == "__main__":
-    print("=== Query 2 ===")
-    answer2 = run_conversation("Find resumes mentioning Python experience")
-    print("\nFinal answer:")
-    print(answer2)
+    print("\n\n=== QUERY 2: Find resumes mentioning Python experience ===\n")
+    print(run_conversation("Find resumes mentioning Python experience"))
 
-if __name__ == "__main__":
-    print("=== Query 3 ===")
-    answer3 = run_conversation("Create a summary file for resume_john_doe.pdf")
-    print("\nFinal answer:")
-    print(answer3)
+    print("\n\n=== QUERY 3: Create a summary file for resume_john_doe.pdf ===\n")
+    print(run_conversation("Create a summary file for resume_john_doe.pdf"))
